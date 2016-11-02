@@ -43,5 +43,11 @@
         "single"
       ]
     }
+  },
+  "dependencies": {
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "event-stream": "^3.3.4",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

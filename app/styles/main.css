@@ -15,7 +15,7 @@ body {
 
 /* Hide default HTML checkbox */
 
-.distrraction-switch input {
+.distraction-switch input {
   display: none;
 }
 
