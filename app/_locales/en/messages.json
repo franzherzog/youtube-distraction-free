@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "youtube distraction free",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "hides the recommended videos on youtube",
+    "description": "The description of the application"
+  }
+}
