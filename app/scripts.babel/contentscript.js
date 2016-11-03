@@ -1,6 +1,7 @@
 'use strict';
 //import Checkbox from './switch'
 import { Checkbox } from './switch'
+var lastUrl = '';
 window.onload = function createToggleSwitch() {
     var startpage = document.getElementById('feed-main-what_to_watch')
     var sidebar = document.getElementsByClassName('watch-sidebar-section')[1]
@@ -24,11 +25,22 @@ window.onload = function createToggleSwitch() {
         timeout = setTimeout(listener, 500)
     }, false);
     function listener() {
-        if (document.getElementById('distraction-toggle')) {
-            checkbox.refreshState()
+        var currentLocation = window.location.href;
+        if (changedURL(currentLocation)) {
+            if (document.getElementById('distraction-toggle')) {
+                checkbox.refreshState()
+            }
+            else {
+                createToggleSwitch()
+            }
         }
-        else {
-            createToggleSwitch()
+    }
+    function changedURL(current) {
+        if (current !== lastUrl) {
+            current = lastUrl
+            return true
+        } else {
+            return false
         }
     }
 }

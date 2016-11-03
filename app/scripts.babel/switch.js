@@ -14,11 +14,17 @@ export class Checkbox {
     }
     createEl() {
         const el = document.createElement('div')
+        el.className = "distraction-free-youtube"
         el.innerHTML = `
+        <div>
+            <p>distractions</p>
             <label class="distraction-switch">
             <input id="distraction-toggle" type="checkbox">
             <div class="slider round"></div>
             </label>
+            <p>on / off</p>
+            </div>
+            <h2>You saved <span>2044</span> minutes</h2>
             `
         return el
     }
@@ -54,11 +60,11 @@ export class Checkbox {
         }
         if (state === 'on') {
             this.checkbox.checked = true
-            this.hide()
+            this.show()
         }
         else {
             this.checkbox.checked = false
-            this.show()
+            this.hide()
         }
     }
     refreshState() {
