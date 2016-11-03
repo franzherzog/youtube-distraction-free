@@ -1,9 +1,19 @@
 export class Checkbox {
+
     constructor(el) {
-        this.render(el)
+        this.parents = []
+        if (el.constructor === Array) {
+            this.parents = el
+        } else {
+            this.parents.push(el)
+        }
+        this.parents.map((el) => {
+            this.insert(el)
+        })
+
     }
     createEl() {
-        var el = document.createElement('div')
+        const el = document.createElement('div')
         el.innerHTML = `
             <label class="distraction-switch">
             <input id="distraction-toggle" type="checkbox">
@@ -12,11 +22,28 @@ export class Checkbox {
             `
         return el
     }
-    render(parent) {
-        if (parent && parent.style && parent.style.visibility !== 'hidden') {
-            parent.style.visibility = 'hidden'
-            parent.parentElement.insertBefore(this.createEl(), parent.parentElement.firstChild);
+    insert(el) {
+        if (el && el.style && el.style.visibility !== 'hidden') {
+            el.style.visibility = 'hidden'
+            el.parentElement.insertBefore(this.createEl(), el.parentElement.firstChild);
         }
+    }
+    render() {
+        this.parents.map(this.insert)
+    }
+    hide() {
+        this.parents.map(function (parent) {
+            if (parent && parent.style && parent.style.visibility !== 'visible') {
+                parent.style.visibility = 'visible'
+            }
+        })
+    }
+    show(parent) {
+        this.parents.map(function (parent) {
+            if (parent && parent.style && parent.style.visibility !== 'hidden') {
+                parent.style.visibility = 'hidden'
+            }
+        })
     }
     findDomEl() {
         return this.checkbox = document.getElementById('distraction-toggle')
@@ -27,9 +54,11 @@ export class Checkbox {
         }
         if (state === 'on') {
             this.checkbox.checked = true
+            this.hide()
         }
         else {
             this.checkbox.checked = false
+            this.show()
         }
     }
     refreshState() {
@@ -42,13 +71,14 @@ export class Checkbox {
             // get initial status of checkbox
             this.refreshState()
             this.checkbox.addEventListener('change', (ev) => {
+                ev.preventDefault()
                 let mode
-                if (ev.target.checked) {
-                    mode = 'on'
-                } else {
-                    mode = 'off'
-                }
-                chrome.runtime.sendMessage({ setMode: mode })
+                // if (ev.target.checked) {
+                //     mode = 'on'
+                // } else {
+                //     mode = 'off'
+                // }
+                chrome.runtime.sendMessage({ setMode: 'toggle' })
             })
             return this.checkbox
         }

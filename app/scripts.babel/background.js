@@ -10,8 +10,12 @@ chrome.runtime.onMessage.addListener(
     }
 
     if (request.hasOwnProperty('setMode') && request.setMode !== setting.mode) {
+      if (setting.mode === 'on') {
+        setting.mode = 'off'
+      } else {
+        setting.mode = 'on'
+      }
       const message = { changedMode: setting.mode };
-      setting.mode = request.setMode
       chrome.runtime.sendMessage(message)
       chrome.tabs.query({}, function (tabs) {
         for (var i = 0; i < tabs.length; ++i) {
