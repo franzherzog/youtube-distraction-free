@@ -96,6 +96,10 @@ input:checked + .slider:before {
   color: #cc181e;
 }
 
+.distraction-free-youtube span:nth-child(2) {
+  font-size: 0.5em;
+}
+
 .distraction-free-youtube p {
   margin: 3px;
   font-size: 0.8em;

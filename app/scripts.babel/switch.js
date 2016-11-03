@@ -24,7 +24,7 @@ export class Checkbox {
             </label>
             <p>on / off</p>
             </div>
-            <h2>You saved <span>2044</span> minutes</h2>
+            <h2>You saved <span>2044</span> minutes<span>* preview next Feature</span></h2>
             `
         return el
     }
