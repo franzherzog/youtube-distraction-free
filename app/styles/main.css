@@ -105,3 +105,12 @@ input:checked + .slider:before {
   font-size: 0.8em;
   letter-spacing: 0.03rem;
 }
+
+.distraction-unicorn {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+}
