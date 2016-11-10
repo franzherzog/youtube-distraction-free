@@ -5,6 +5,11 @@ var lastUrl = '';
 window.onload = function createToggleSwitch() {
     var startpage = document.getElementById('feed-main-what_to_watch')
     var sidebar = document.getElementsByClassName('watch-sidebar-section')[1]
+    if (startpage || sidebar) {
+        // found elements
+    } else {
+        return;
+    }
     var body = document.getElementsByTagName('body')[0]
     var timeout = null;
     let elementsToHide = [startpage, sidebar]
@@ -26,21 +31,11 @@ window.onload = function createToggleSwitch() {
     }, false);
     function listener() {
         var currentLocation = window.location.href;
-        if (changedURL(currentLocation)) {
-            if (document.getElementById('distraction-toggle')) {
-                checkbox.refreshState()
-            }
-            else {
-                createToggleSwitch()
-            }
+        if (document.getElementById('distraction-toggle')) {
+            checkbox.refreshState()
         }
-    }
-    function changedURL(current) {
-        if (current !== lastUrl) {
-            lastUrl = current
-            return true
-        } else {
-            return false
+        else {
+            createToggleSwitch()
         }
     }
 }
