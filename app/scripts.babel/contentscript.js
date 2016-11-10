@@ -37,7 +37,7 @@ window.onload = function createToggleSwitch() {
     }
     function changedURL(current) {
         if (current !== lastUrl) {
-            current = lastUrl
+            lastUrl = current
             return true
         } else {
             return false
